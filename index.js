@@ -289,6 +289,8 @@ jasper.prototype.export = function(report, type) {
 			if(typeof conn.driver == 'string') {
 				conn.driver = self.drivers[conn.driver];
 			}
+			//The connection string in Oracle is treated as jdbc:oracle:thin:@host:port/SID
+			//For example jdbc:oracle:thin:@192.168.0.xy:1521/orcl
 			var connStr = conn.jdbc?conn.jdbc:'jdbc:'+conn.driver.type+'://'+conn.host+':'+conn.port+'/'+conn.dbname;
 
 			if(!validConnections[connStr] || !validConnections[connStr].isValidSync(conn.validationTimeout || 1)){
